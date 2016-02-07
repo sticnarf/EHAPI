@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  # get 'search'
+  get 'search/:search', to: 'home#search'
+  get 'search/:search/:page', to: 'home#search'
 
   get 'index', to: 'home#index'
   get 'index/:page', to: 'home#index'
