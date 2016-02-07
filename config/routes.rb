@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # get 'search'
 
+  get 'index', to: 'home#index'
   get 'index/:page', to: 'home#index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

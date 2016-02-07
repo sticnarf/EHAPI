@@ -3,9 +3,10 @@ class HomeController < ApplicationController
   end
 
   def index
-    # byebug
-    page = params[:page].to_i - 1
-    html = Curl.get("#{base_url}/?page=#{page}") do |http|
+    pm = {
+      page: (params[:page] || 1).to_i - 1
+    }
+    html = Curl.get("#{base_url}/?#{pm.to_query}") do |http|
       http.headers['Cookie'] = hentai_cookies
     end
     render json: parse_index(html.body_str)
@@ -21,7 +22,8 @@ class HomeController < ApplicationController
       link = entry.css('.it5 a').first
       match = link.attr('href').match /\/g\/(\d+)\/([\w\d]+)/
       result << {
-        type: entry.css('img').first.attr('alt'),
+        type: entry.css('.itdc img').first.attr('alt'),
+        cover: entry.css('.it2').first.to_html.match(/[abcdef\d]+[\d-]+\w+\.\w+/).to_s,
         published: entry.children[1].text,
         title: link.text,
         uploader: entry.css('.itu a').first.text,
