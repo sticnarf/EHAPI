@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  posted_at: 2016-02-07 08:51:27
+  language: MyString
+  file_size: MyString
+  length: 1
+  rating: 
+  gid: MyString
+  token: MyString
+  title: MyString
+  cover: MyString
+  cover2: MyString
+  sort: MyString
+  tags: MyString
+
+two:
+  posted_at: 2016-02-07 08:51:27
+  language: MyString
+  file_size: MyString
+  length: 1
+  rating: 
+  gid: MyString
+  token: MyString
+  title: MyString
+  cover: MyString
+  cover2: MyString
+  sort: MyString
+  tags: MyString
