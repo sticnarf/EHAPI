@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160208123425) do
+ActiveRecord::Schema.define(version: 20160209135234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,14 +38,13 @@ ActiveRecord::Schema.define(version: 20160208123425) do
 
   create_table "pictures", force: :cascade do |t|
     t.integer  "page"
-    t.integer  "gallery_id"
-    t.string   "imgkey"
-    t.string   "showkey"
+    t.integer  "gid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "startkey"
-    t.index ["gallery_id", "page"], name: "index_pictures_on_gallery_id_and_page", using: :btree
-    t.index ["gallery_id"], name: "index_pictures_on_gallery_id", using: :btree
+    t.string   "url"
+    t.index ["gid", "page"], name: "index_pictures_on_gid_and_page", using: :btree
+    t.index ["gid"], name: "index_pictures_on_gid", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

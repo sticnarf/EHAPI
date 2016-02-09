@@ -26,8 +26,8 @@ class GalleriesController < ApplicationController
   
   def show
     curl = get_with_cookies "#{base_url}/g/#{params[:gid]}/#{params[:token]}/"
-    gallery = Gallery.find_or_initialize_by(gid: params[:gid], token: params[:gid])
-    render json: parse_gallery(gallery, curl.body_str), except: [:id, :created_at, :updated_at]#, include: :pictures
+    gallery = Gallery.find_or_initialize_by(gid: params[:gid], token: params[:token])
+    render json: parse_gallery(gallery, curl.body_str), except: [:id, :created_at, :updated_at]
   end
   
   private
@@ -47,12 +47,12 @@ class GalleriesController < ApplicationController
     gallery.file_size = tr[4].search('.gdt2').xpath('text()').text.full_strip
     gallery.length = tr[5].css('.gdt2').text.to_i
     gallery.rating = doc.css('#rating_label').text.match(/[\d\.]+/).to_s.to_f
-    gallery.cover = doc.css('#gd1 img').attr('src')
+    gallery.cover = doc.css('#gd1 img').attr('src').to_s.match(/[abcdef\d]+[\d-]+\w+\.\w+/).to_s
     gallery.tags = doc.css('#taglist a').map { |x| x.text.split('|').map { |y| y.full_strip } }.flatten
     gallery.save
     doc.css('#gdt .gdtm').each do |div|
       page = div.css('img').attr('alt').to_s.to_i
-      pic = Picture.find_or_initialize_by(gallery_id: gallery.id, page: page)
+      pic = Picture.find_or_initialize_by(gid: gallery.gid, page: page)
       pic.startkey = div.css('a').attr('href').to_s.match(/\/s\/([a-f\d]+)\//)[1]
       pic.save
     end
