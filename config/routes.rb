@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  get 'search/:search', to: 'galleries#search'
-  get 'search/:search/:page', to: 'galleries#search'
+  get 's/:search', to: 'galleries#search'
+  get 's/:search/:page', to: 'galleries#search'
 
-  get 'index', to: 'galleries#index'
-  get 'index/:page', to: 'galleries#index'
+  root to: 'galleries#index'
+  get ':page', to: 'galleries#index'
 
   get 'g/:gid/:token', to: 'galleries#show'
   
