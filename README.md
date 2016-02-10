@@ -45,6 +45,20 @@ GET /s/:keyword/:page
 GET /s/Asuka%20EVA/5
 ```
 
+To filter out some sorts, set the attribute of the sort to `0`.
+
+For example:
+
+```
+GET /s/asuna?western=0
+```
+
+The default setting for all sorts is `1`:
+
+```
+GET /s/:keyword/:page?doujinshi=1&manga=1&artistcg=1&gamecg=1&western=1&non-h=1&imageset=1&cosplay=1&asianporn=1&misc=1
+```
+
 ### Gallery Info
 
 To get the information of a gallery, you need the `gid` and the `token`.
