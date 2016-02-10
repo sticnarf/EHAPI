@@ -66,7 +66,7 @@ class GalleriesController < ApplicationController
   
   def parse_index html
     doc = Nokogiri::HTML(html)
-    entries = doc.css('.itg tr')[1..-1]
+    entries = doc.css('.itg tr')[1..-1] || []
     entries.map do |entry|
       link = entry.css('.it5 a').first
       match = link.attr('href').match /\/g\/(\d+)\/([\w\d]+)/
