@@ -82,4 +82,3 @@ production:
   <<: *default
   database: EHAPI_production
   username: EHAPI
-  password: <%= ENV['EHAPI_DATABASE_PASSWORD'] %>
