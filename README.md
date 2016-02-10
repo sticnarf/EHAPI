@@ -78,3 +78,17 @@ GET /p/:gid/:page
 ```
 
 In general, the url in the returned json directs to the Hentai@Home cluster, which is available for everyone.
+
+### Cover Proxy
+
+The name of the cover image can be found in the json of either index or gallery info.
+
+```
+GET /cover/:name
+```
+
+For example:
+
+```
+GET /cover/751dce6df5d1e9bf15e288e3bd3098c628cb20a8-1299240-1430-2000-jpg_250.jpg
+```
